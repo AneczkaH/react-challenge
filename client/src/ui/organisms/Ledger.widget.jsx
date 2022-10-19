@@ -3,6 +3,7 @@ import { Box, Typography } from '@mui/material';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import RemoveOutlinedIcon from '@mui/icons-material/RemoveOutlined';
+import { useSnackbar } from 'notistack';
 
 import {
   ActionHeader,
@@ -18,9 +19,10 @@ import {
   Card,
 } from 'ui';
 import { LedgerService } from 'api';
-import { BUDGET_QUERY, LEDGER_QUERY } from 'queryKeys';
+import { BUDGET_QUERY, LEDGER_QUERY, SUMMARY_QUERY } from 'queryKeys';
 
 export const LedgerWidget = () => {
+  const { enqueueSnackbar } = useSnackbar();
   const [modalVisible, toggleModal] = useState(false);
   const [modalType, setModalType] = useState('');
 
@@ -34,7 +36,14 @@ export const LedgerWidget = () => {
     onSuccess: async () => {
       await queryClient.refetchQueries([LEDGER_QUERY]);
       await queryClient.refetchQueries([BUDGET_QUERY]);
+      await queryClient.refetchQueries([SUMMARY_QUERY]);
+      enqueueSnackbar('Element został usunięty', {variant: 'success'});
+
     },
+    onError: async () => {
+      
+      enqueueSnackbar('Wystąpił nieoczekiwany błąd', {variant: 'error'});
+    }
   });
 
   const openModal = (modalType) => {

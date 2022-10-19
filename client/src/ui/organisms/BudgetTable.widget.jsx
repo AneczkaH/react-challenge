@@ -9,8 +9,11 @@ import React from 'react';
 import { CategoryCell } from 'ui/molecules/CategoryCell';
 import { Money } from 'ui/atoms/Money';
 import { LocalizedDate } from 'ui/atoms/LocalizedDate';
+import { useSnackbar } from 'notistack';
 
 export const BudgetTableWidget = () => {
+  
+  const { enqueueSnackbar } = useSnackbar();
   const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery(BUDGET_QUERY, () =>
@@ -21,7 +24,11 @@ export const BudgetTableWidget = () => {
     onSuccess: async () => {
       await queryClient.refetchQueries([BUDGET_QUERY]);
       await queryClient.refetchQueries([PARTIAL_CATEGORIES_QUERY]);
+      enqueueSnackbar('Element został usunięty', {variant: 'success'});
     },
+    onError: async () => {
+      enqueueSnackbar('Wystąpił nieoczekiwany błąd', {variant: 'error'});
+    }
   });
 
   const deleteRecords = (ids) => mutation.mutate(ids);

@@ -1,9 +1,3 @@
-import {
-  AlignHorizontalCenter,
-  AlignVerticalCenter,
-  Margin,
-} from '@mui/icons-material';
-import { fontFamily, textAlign } from '@mui/system';
 import no_content from '../../assets/no_content.png';
 import { Box, Typography } from '@mui/material';
 

@@ -114,19 +114,6 @@ let buttonTheme = createTheme(theme, {
             color: 'rgba(51, 51, 51, 0.25)',
           },
         },
-        /*
-        sizeMedium: {
-          width: "94px", height: "38px"
-        },
-
-        sizeLarge:{
-          width: "102px", height: "38px"
-        },
-
-        sizeSmall: {
-          width: "72px", height: "38px"
-        },
-*/
       },
     },
   },

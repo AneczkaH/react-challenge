@@ -22,6 +22,8 @@ export { AddNewLedgerRecordModal } from './organisms/AddNewLedgerRecord.modal';
 export { AppBar } from './organisms/AppBar';
 export { MainMenu } from './organisms/Menu';
 export { LedgerWidget } from './organisms/Ledger.widget';
+export { BudgetChartWidget } from 'ui/organisms/BudgetChart.widget';
+export { SummaryChartWidget } from 'ui/organisms/SummaryChart.widget';
 
 // templates
 export { Page } from './templates/Page';
